@@ -1,0 +1,25 @@
+name: Discord Alert
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: jitterbit/get-changed-files@v1
+
+      - name: Notify Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+            for changed_file in ${{ steps.files.outputs.all }}; do
+              echo "Do something with this ${changed_file}."
+              curl -H "Content-Type: application/json" -d '{"username": "Lab-Notes", "embeds": [{"author": {"name": "Notebook Update"},"description": "[${changed_file}](https://github.com/OALabs/Lab-Notes/blob/main/DotNET/${changed_file}.ipynb)"}]}' "$DISCORD_WEBHOOK"
+            done
