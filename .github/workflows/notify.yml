@@ -22,5 +22,9 @@ jobs:
         run: |
             for changed_file in ${{ steps.files.outputs.all }}; do
               echo "Do something with this ${changed_file}."
-              curl -H "Content-Type: application/json" -d '{"username": "Lab-Notes", "embeds": [{"author": {"name": "Notebook Update"},"description": "[${changed_file}](https://github.com/OALabs/Lab-Notes/blob/main/DotNET/${changed_file}.ipynb)"}]}' "$DISCORD_WEBHOOK"
+              FILE_PATH=${changed_file}
+              FILE_URL='https://github.com/OALabs/Lab-Notes/blob/main/'
+              FILE_URL+=$FILE_PATH
+              FILE=$( echo ${FILE_PATH##*/} )
+              curl -H "Content-Type: application/json" -d '{"username": "Lab-Notes", "embeds": [{"author": {"name": "Notebook Update"},"description": "['"${FILE}"']('"${FILE_URL}"')"}]}' "$DISCORD_WEBHOOK"
             done
