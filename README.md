@@ -1,4 +1,4 @@
-[![Chat](https://img.shields.io/badge/Chat-Discord-blueviolet)](https://discord.gg/UWdMC3W2qn) [![Support](https://img.shields.io/badge/Support-Patreon-FF424D)](https://www.patreon.com/oalabs)
-# Lab-Notes
-Code snips and notes
+# This repository is archived - all notebooks have been moved to [Research](https://github.com/OALabs/research/tree/master/_notebooks)
+
+## Notes are now published to [**research.openanalysis.net**](https://research.openanalysis.net) 
 
